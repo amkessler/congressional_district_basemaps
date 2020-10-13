@@ -51,18 +51,18 @@ cd_onestate
 
 #generate the map of our one selected state's congressional districts
 tm_shape(cd_onestate) +
-  tm_polygons(id = "GEOID") 
+  tm_polygons() 
 
 
 #generate it again but this time adding district number labels
 tm_shape(cd_onestate) +
-  tm_polygons(id = "GEOID") +
+  tm_polygons() +
   tm_text("CD116FP", size = .5) #this line adds the labels
 
 
 #let's save the step above into a new object name instead
 mymap <-tm_shape(cd_onestate) +
-  tm_polygons(id = "GEOID") +
+  tm_polygons() +
   tm_text("CD116FP", size = .5)
 
 #run it
