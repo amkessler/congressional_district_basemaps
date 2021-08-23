@@ -14,7 +14,7 @@ cd <- congressional_districts(cb = TRUE, resolution = "5m")
 #select just the target state needed using its FIPS code
 # https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696
 cd_onestate <- cd %>% 
-  filter(STATEFP == "09")
+  filter(STATEFP == "48")
 
 #let's see what we've got
 cd_onestate
@@ -40,7 +40,7 @@ cd_onestate
 
 ## now just pick a single district to highlight in the state
 cd_onedist <- cd_onestate %>% 
-  filter(CD116FP == "01")
+  filter(CD116FP == "33")
 
 
 
