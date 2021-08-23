@@ -76,32 +76,33 @@ tmap_save(mymap, "output_locators/mymap.svg")
 
 
 
-# 
-# ### Creating maps for MULTIPLE STATES at the same time ##### --------------------------
-# 
-# #if there's a need to create congressional maps of more than one state, we can do that
-# #all at once by creating a function that we'll then feed our state choices into
-# 
-# #create the function
-# #we'll use the state ABBREVIATION for clarity this time
-# 
-# make_state_map <- function(stateabbr){
-#   #choose state
-#   cd_onestate <- cd %>% 
-#     filter(state == stateabbr)
-#   # create cd map for the state
-#   mymap_test <-  tm_shape(cd_onestate) +
-#     tm_polygons(id = "GEOID") +
-#     tm_text("CD116FP", size = .5)
-#   #export file to pdf
-#   filename = paste("output/districtmap_", stateabbr, ".pdf")
-#   tmap_save(mymap_test, filename)
-# }
-# 
-# #try for just one state
-# make_state_map('CA')
-# 
-# 
+
+### Creating maps for MULTIPLE STATES at the same time ##### --------------------------
+
+#function
+
+make_state_map <- function(stateabbr, distnum){
+  #choose state
+  cd_onestate <- cd %>%
+    filter(state == stateabbr)
+  #choose district number
+  cd_onedist <- cd_onestate %>% 
+    filter(CD116FP == distnum)
+  #create map
+  mymap_locator <- tm_shape(cd_onestate) +
+    tm_polygons(id = "GEOID") +
+    tm_shape(cd_onedist) +
+    tm_polygons(id = "GEOID", col = "purple") +
+    tm_text("CD116FP", size = .5)
+  #export file to svg
+  filename = paste0("output_locators/", stateabbr, "-", distnum, ".svg")
+  tmap_save(mymap_locator, filename)
+}
+
+#try for just one 
+make_state_map("WA", "09")
+
+
 # #try for all
 # 
 # #create a state code vector for all states
@@ -113,7 +114,7 @@ tmap_save(mymap, "output_locators/mymap.svg")
 # walk(targetstates, make_state_map)
 # 
 # #if all goes well, you should now see all of the generated pdfs in the "output" directory
-# 
-# 
-# 
-# 
+
+
+
+
