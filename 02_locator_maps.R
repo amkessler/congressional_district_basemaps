@@ -99,7 +99,12 @@ make_state_map <- function(stateabbr, distnum){
   tmap_save(mymap_locator, filename)
 }
 
-#try for just one 
+#try for just one at a time
+make_state_map("CA", "03")
+make_state_map("CT", "01")
+make_state_map("OH", "10")
+make_state_map("TX", "33")
+make_state_map("UT", "02")
 make_state_map("WA", "09")
 
 
