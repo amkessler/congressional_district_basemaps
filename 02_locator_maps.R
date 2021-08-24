@@ -108,17 +108,16 @@ make_state_map("UT", "02")
 make_state_map("WA", "09")
 
 
-# #try for all
-# 
-# #create a state code vector for all states
-# us_states_vector <- unique(fips_codes$state)[1:51]
-# 
-# #first make vector of fips codes for the states we want
-# targetstates <- us_states_vector
-# #now loop through them all using purrr's walk() function
-# walk(targetstates, make_state_map)
-# 
-# #if all goes well, you should now see all of the generated pdfs in the "output" directory
+#try for all at once
+
+#create vector pairs for desired districts
+states_vector <- c("CA", "CT", "OH", "TX", "UT", "WA")
+dists_vector  <- c("03", "01", "10", "33", "02", "09")
+
+#now loop through them all using purrr's walk2() function
+walk2(states_vector, dists_vector, make_state_map)
+
+
 
 
 
